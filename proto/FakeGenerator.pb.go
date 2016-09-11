@@ -44,7 +44,7 @@ const _ = grpc.SupportPackageIsVersion3
 // Client API for FakeGenerator service
 
 type FakeGeneratorClient interface {
-	GetUse(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.User, error)
+	GetUser(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.User, error)
 	GetAddress(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Address, error)
 	GetEmail(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Email, error)
 	GetDate(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Date, error)
@@ -58,9 +58,9 @@ func NewFakeGeneratorClient(cc *grpc.ClientConn) FakeGeneratorClient {
 	return &fakeGeneratorClient{cc}
 }
 
-func (c *fakeGeneratorClient) GetUse(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.User, error) {
+func (c *fakeGeneratorClient) GetUser(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.User, error) {
 	out := new(FakeGeneratorMessages.User)
-	err := grpc.Invoke(ctx, "/fakegenerator.FakeGenerator/GetUse", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/fakegenerator.FakeGenerator/GetUser", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,7 +97,7 @@ func (c *fakeGeneratorClient) GetDate(ctx context.Context, in *FakeGeneratorMess
 // Server API for FakeGenerator service
 
 type FakeGeneratorServer interface {
-	GetUse(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.User, error)
+	GetUser(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.User, error)
 	GetAddress(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.Address, error)
 	GetEmail(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.Email, error)
 	GetDate(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.Date, error)
@@ -107,20 +107,20 @@ func RegisterFakeGeneratorServer(s *grpc.Server, srv FakeGeneratorServer) {
 	s.RegisterService(&_FakeGenerator_serviceDesc, srv)
 }
 
-func _FakeGenerator_GetUse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FakeGenerator_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FakeGeneratorMessages.EmptyMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FakeGeneratorServer).GetUse(ctx, in)
+		return srv.(FakeGeneratorServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fakegenerator.FakeGenerator/GetUse",
+		FullMethod: "/fakegenerator.FakeGenerator/GetUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FakeGeneratorServer).GetUse(ctx, req.(*FakeGeneratorMessages.EmptyMessage))
+		return srv.(FakeGeneratorServer).GetUser(ctx, req.(*FakeGeneratorMessages.EmptyMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -184,8 +184,8 @@ var _FakeGenerator_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*FakeGeneratorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUse",
-			Handler:    _FakeGenerator_GetUse_Handler,
+			MethodName: "GetUser",
+			Handler:    _FakeGenerator_GetUser_Handler,
 		},
 		{
 			MethodName: "GetAddress",
@@ -207,15 +207,15 @@ var _FakeGenerator_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("FakeGenerator.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 158 bytes of a gzipped FileDescriptorProto
+	// 153 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x76, 0x4b, 0xcc, 0x4e,
 	0x75, 0x4f, 0xcd, 0x4b, 0x2d, 0x4a, 0x2c, 0xc9, 0x2f, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17,
 	0xe2, 0x4d, 0x4b, 0xcc, 0x4e, 0x4d, 0x87, 0x09, 0x4a, 0x49, 0xa3, 0xa8, 0xf1, 0x4d, 0x2d, 0x2e,
-	0x4e, 0x4c, 0x4f, 0x2d, 0x86, 0xa8, 0x35, 0x9a, 0xc5, 0xc8, 0xc5, 0x8b, 0x22, 0x2f, 0x24, 0xc7,
-	0xc5, 0xe6, 0x9e, 0x5a, 0x12, 0x5a, 0x9c, 0x2a, 0xc4, 0xab, 0xe7, 0x9a, 0x5b, 0x50, 0x52, 0x09,
-	0xd5, 0x21, 0xc5, 0xaa, 0x17, 0x5a, 0x9c, 0x5a, 0x24, 0xa4, 0xca, 0xc5, 0xe5, 0x9e, 0x5a, 0xe2,
-	0x98, 0x92, 0x52, 0x94, 0x5a, 0x5c, 0x8c, 0xae, 0x86, 0x43, 0x0f, 0x26, 0xa1, 0xc8, 0xc5, 0xe1,
-	0x9e, 0x5a, 0xe2, 0x9a, 0x9b, 0x98, 0x99, 0x83, 0xae, 0x88, 0x4d, 0x0f, 0x22, 0x2c, 0xcf, 0xc5,
-	0xee, 0x9e, 0x5a, 0xe2, 0x92, 0x58, 0x82, 0xc5, 0x2a, 0x90, 0x68, 0x12, 0x1b, 0xd8, 0x8d, 0xc6,
-	0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xf4, 0x30, 0x94, 0x35, 0xe6, 0x00, 0x00, 0x00,
+	0x4e, 0x4c, 0x4f, 0x2d, 0x86, 0xa8, 0x35, 0x9a, 0xcd, 0xc8, 0xc5, 0x8b, 0x22, 0x2f, 0x24, 0xcf,
+	0xc5, 0xee, 0x9e, 0x5a, 0x12, 0x5a, 0x9c, 0x5a, 0x24, 0xc4, 0xab, 0xe7, 0x9a, 0x5b, 0x50, 0x52,
+	0x09, 0xd5, 0x22, 0xc5, 0xaa, 0x07, 0x16, 0x55, 0xe5, 0xe2, 0x72, 0x4f, 0x2d, 0x71, 0x4c, 0x49,
+	0x29, 0x4a, 0x2d, 0x2e, 0x46, 0x57, 0xc3, 0xa1, 0x07, 0x93, 0x50, 0xe4, 0xe2, 0x70, 0x4f, 0x2d,
+	0x71, 0xcd, 0x4d, 0xcc, 0xcc, 0x41, 0x57, 0xc4, 0xa6, 0x07, 0x11, 0x86, 0x58, 0xe5, 0x92, 0x58,
+	0x92, 0x8a, 0x69, 0x15, 0x48, 0x34, 0x89, 0x0d, 0xec, 0x48, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0xf7, 0x61, 0xec, 0x03, 0xe7, 0x00, 0x00, 0x00,
 }

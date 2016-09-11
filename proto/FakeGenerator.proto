@@ -4,7 +4,7 @@ package fakegenerator;
 import "FakeGeneratorMessages.proto";
 
 service FakeGenerator {
-    rpc GetUse(EmptyMessage) returns (User);
+    rpc GetUser(EmptyMessage) returns (User);
     rpc GetAddress(EmptyMessage) returns (Address);
     rpc GetEmail(EmptyMessage) returns (Email);
     rpc GetDate(EmptyMessage) returns (Date);
