@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+
+message Address {
+    string Continent = 1;
+    string Country = 2;
+    string City = 3;
+    string State = 4;
+    string StreetAddress = 5;
+    string Zip = 6;
+    float Latitude = 7;
+    float Longitude = 8;
+}
+
+message Date {
+    int64 Year = 1;
+    int64 Month = 2;
+    int64 Day = 3;
+}
+
+message User {
+    string FullName = 1;
+    string Username = 2;
+    string Password = 3;
+    string Email = 4;
+    string PhoneNumber = 5;
+    string Gender = 6;
+    string Language = 7;
+    Date Birthday = 8;
+    Address Address = 9;
+}
+
+message Email {
+    string Title = 1;
+    string Body = 2;
+    string From = 3;
+    string To = 4;
+}
+
+message EmptyMessage {
+
+}
