@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package fakegenerator;
-import "FakeGeneratorMessages.proto";
+import public "FakeGeneratorMessages.proto";
 
 service FakeGenerator {
     rpc GetUser(EmptyMessage) returns (User);
