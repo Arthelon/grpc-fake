@@ -15,7 +15,12 @@ package fakegenerator
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import _ "proto"
+import FakeGeneratorMessages "."
+
+import (
+	context "golang.org/x/net/context"
+	grpc "google.golang.org/grpc"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -27,6 +32,177 @@ var _ = math.Inf
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion3
+
+// Client API for FakeGenerator service
+
+type FakeGeneratorClient interface {
+	GetUse(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.User, error)
+	GetAddress(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Address, error)
+	GetEmail(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Email, error)
+	GetDate(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Date, error)
+}
+
+type fakeGeneratorClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewFakeGeneratorClient(cc *grpc.ClientConn) FakeGeneratorClient {
+	return &fakeGeneratorClient{cc}
+}
+
+func (c *fakeGeneratorClient) GetUse(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.User, error) {
+	out := new(FakeGeneratorMessages.User)
+	err := grpc.Invoke(ctx, "/fakegenerator.FakeGenerator/GetUse", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fakeGeneratorClient) GetAddress(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Address, error) {
+	out := new(FakeGeneratorMessages.Address)
+	err := grpc.Invoke(ctx, "/fakegenerator.FakeGenerator/GetAddress", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fakeGeneratorClient) GetEmail(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Email, error) {
+	out := new(FakeGeneratorMessages.Email)
+	err := grpc.Invoke(ctx, "/fakegenerator.FakeGenerator/GetEmail", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fakeGeneratorClient) GetDate(ctx context.Context, in *FakeGeneratorMessages.EmptyMessage, opts ...grpc.CallOption) (*FakeGeneratorMessages.Date, error) {
+	out := new(FakeGeneratorMessages.Date)
+	err := grpc.Invoke(ctx, "/fakegenerator.FakeGenerator/GetDate", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for FakeGenerator service
+
+type FakeGeneratorServer interface {
+	GetUse(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.User, error)
+	GetAddress(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.Address, error)
+	GetEmail(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.Email, error)
+	GetDate(context.Context, *FakeGeneratorMessages.EmptyMessage) (*FakeGeneratorMessages.Date, error)
+}
+
+func RegisterFakeGeneratorServer(s *grpc.Server, srv FakeGeneratorServer) {
+	s.RegisterService(&_FakeGenerator_serviceDesc, srv)
+}
+
+func _FakeGenerator_GetUse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FakeGeneratorMessages.EmptyMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FakeGeneratorServer).GetUse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fakegenerator.FakeGenerator/GetUse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FakeGeneratorServer).GetUse(ctx, req.(*FakeGeneratorMessages.EmptyMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FakeGenerator_GetAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FakeGeneratorMessages.EmptyMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FakeGeneratorServer).GetAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fakegenerator.FakeGenerator/GetAddress",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FakeGeneratorServer).GetAddress(ctx, req.(*FakeGeneratorMessages.EmptyMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FakeGenerator_GetEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FakeGeneratorMessages.EmptyMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FakeGeneratorServer).GetEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fakegenerator.FakeGenerator/GetEmail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FakeGeneratorServer).GetEmail(ctx, req.(*FakeGeneratorMessages.EmptyMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FakeGenerator_GetDate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FakeGeneratorMessages.EmptyMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FakeGeneratorServer).GetDate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fakegenerator.FakeGenerator/GetDate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FakeGeneratorServer).GetDate(ctx, req.(*FakeGeneratorMessages.EmptyMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _FakeGenerator_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "fakegenerator.FakeGenerator",
+	HandlerType: (*FakeGeneratorServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetUse",
+			Handler:    _FakeGenerator_GetUse_Handler,
+		},
+		{
+			MethodName: "GetAddress",
+			Handler:    _FakeGenerator_GetAddress_Handler,
+		},
+		{
+			MethodName: "GetEmail",
+			Handler:    _FakeGenerator_GetEmail_Handler,
+		},
+		{
+			MethodName: "GetDate",
+			Handler:    _FakeGenerator_GetDate_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: fileDescriptor0,
+}
 
 func init() { proto.RegisterFile("FakeGenerator.proto", fileDescriptor0) }
 
