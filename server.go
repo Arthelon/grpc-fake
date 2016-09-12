@@ -7,6 +7,7 @@ import (
 	"golang.org/x/net/context"
 	pb "github.com/Arthelon/grpc-fake/proto"
 	"github.com/icrowley/fake"
+	"fmt"
 )
 
 type fakeGeneratorServer struct {}
@@ -74,6 +75,7 @@ func main() {
 		grpclog.Fatalf("Failed to listen to port 3000: %v", err)
 		return
 	}
+	fmt.Println("Listening to port 3000")
 	grpcServer := grpc.NewServer()
 	pb.RegisterFakeGeneratorServer(grpcServer, &fakeGeneratorServer{})
 	grpcServer.Serve(listener)
